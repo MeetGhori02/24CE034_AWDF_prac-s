@@ -26,7 +26,7 @@
 | **05** | [MongoDB Integration and Schema Design with Mongoose](#practical-5-mongodb-integration-and-schema-design-with-mongoose) | ✅ **Completed** | MongoDB, Mongoose ODM, Schema Validation |
 | **06** | [Full Stack Integration React + Node + MongoDB](#practical-6-full-stack-integration-react--node--mongodb) | ✅ **Completed** | Full-Stack CRUD, CORS, React Services |
 | **07** | [Authentication and Middleware Pipeline](#practical-7-authentication-and-middleware-pipeline) | ✅ **Completed** | JWT, `bcryptjs` Hashing, Auth Middleware, Input Sanitization |
-| **08** | Performance Optimization and Lazy Loading in React | ⏳ *Pending* | `React.lazy()`, `Suspense`, Code Splitting |
+| **08** | [Performance Optimization and Lazy Loading in React](#practical-8-performance-optimization-and-lazy-loading-in-react) | ✅ **Completed** | `React.lazy()`, `Suspense`, Code Splitting, Vite Chunks |
 | **09** | In-Memory Caching and Query Optimization | ⏳ *Pending* | `node-cache`, TTL, Cache Invalidation |
 | **10** | Asynchronous Processing with Event-Driven Architecture | ⏳ *Pending* | Node.js `EventEmitter`, Async Listeners |
 | **11** | Containerization with Docker and Docker Compose | ⏳ *Pending* | Docker, `docker-compose`, Multi-container |
@@ -49,12 +49,13 @@
     │   │   │   ├── About.jsx                    # About Me Component
     │   │   │   ├── Skills.jsx                   # Dynamic Skills Component
     │   │   │   ├── footer.jsx                   # Footer Component
-    │   │   │   ├── Home.jsx                     # Home Page Route
-    │   │   │   ├── Project.jsx                  # Full Stack Task UI & API Integration
-    │   │   │   └── Contact.jsx                  # Controlled Form & UI Toggle State
+    │   │   │   ├── Home.jsx                     # Home Page Route (Lazy Loaded)
+    │   │   │   ├── Project.jsx                  # Task UI & API Integration (Lazy Loaded)
+    │   │   │   └── Contact.jsx                  # Controlled Form & State (Lazy Loaded)
     │   │   ├── services/
     │   │   │   └── api.js                       # Centralized Fetch API Service (Auth & Tasks)
-    │   │   ├── App.jsx                          # Main Router & Component Composition
+    │   │   ├── App.jsx                          # Main Router, React.lazy() & Suspense
+    │   │   ├── App.css                          # Application & Fallback Spinner Styles
     │   │   └── main.jsx                         # React Entry Point
     │   └── package.json
     │
@@ -142,6 +143,19 @@
   - Built `/register` and `/login` endpoints returning signed 1-hour JWT tokens.
   - Built protected `/me` profile route and protected all `/tasks` CRUD operations with custom [auth.js](file:///m:/FOR%20ME/M/COLLEGE%20WORK/5th%20SEMESTER/WDF-ADVANCED/Portfolio/task-manager-api/middleware/auth.js) middleware.
   - Created server-side input validation middleware ([validateInput.js](file:///m:/FOR%20ME/M/COLLEGE%20WORK/5th%20SEMESTER/WDF-ADVANCED/Portfolio/task-manager-api/middleware/validateInput.js)).
+
+---
+
+### **Practical 8: Performance Optimization and Lazy Loading in React**
+- **Objective:** Apply route-based code splitting using `React.lazy()` and `Suspense` to optimize initial bundle size and page loading speed.
+- **Key Deliverables & Implementation:**
+  - Converted static imports for `Home`, `Project`, and `Contact` into dynamic imports using `React.lazy(() => import(...))`.
+  - Wrapped `<Routes>` inside `<Suspense>` with a styled `LoadingFallback` component.
+  - Generated separate bundle JavaScript chunks during Vite build:
+    - `dist/assets/Home-[hash].js`
+    - `dist/assets/Contact-[hash].js`
+    - `dist/assets/Project-[hash].js`
+- **Key Code File:** [App.jsx](file:///m:/FOR%20ME/M/COLLEGE%20WORK/5th%20SEMESTER/WDF-ADVANCED/Portfolio/student-portfolio/src/App.jsx)
 
 ---
 
